@@ -29,10 +29,11 @@ jobs:
         ## ディレクトリ構造
 
         \`\`\`
-        cat directory_structure.txt
+        $(cat directory_structure.txt)
         \`\`\`
 
         \`\`\`
+        
         EOF
       shell: bash
 
