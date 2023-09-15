@@ -15,7 +15,7 @@ jobs:
 
     - name: Generate Directory Structure
       run: |
-        tree -L 1
+        tree -L 1 > directory_structure.txt
         cat directory_structure.txt
       shell: bash
 
