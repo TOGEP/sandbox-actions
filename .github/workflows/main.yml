@@ -1,0 +1,46 @@
+name: Update Directory Structure
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Generate Directory Structure
+      run: |
+        tree -L 1
+        cat directory_structure.txt
+      shell: bash
+
+    - name: Update README
+      run: |
+        cat <<EOF > README.md
+        # About 
+        
+        sandbox-actions is ...
+
+        ## ディレクトリ構造
+
+        \`\`\`
+        cat directory_structure.txt
+        \`\`\`
+
+        \`\`\`
+        EOF
+      shell: bash
+
+    - name: Commit and Push Changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add README.md
+        git commit -m "Update directory structure in README"
+        git push
+      shell: bash
